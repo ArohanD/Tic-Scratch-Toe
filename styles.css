@@ -60,6 +60,7 @@ body {
     justify-content: space-around;
     background-color: #5E81AD;
     color: whitesmoke;
+    font-family: 'Hind', sans-serif;
 }
 
 #board {
@@ -95,4 +96,8 @@ body {
 .pieceX {
     height: auto;
     width: 20vh;
+}
+
+h1 {
+    font-size: 8vh;
 }

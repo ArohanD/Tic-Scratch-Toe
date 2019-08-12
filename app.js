@@ -4,6 +4,12 @@ let board = [
     [null, null, null],
 ]
 
+let resetBoard = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+]
+
 let isCurrentPlayerX;
 let gameOver = false;
 let pieceX = "https://i.imgur.com/meftV0q.gif";
@@ -22,7 +28,6 @@ flip = (element, tuple) => {
     let piece = isCurrentPlayerX ? 'X' : 'O';
     board[tuple[0]][tuple[1]] = piece;
     isCurrentPlayerX = !isCurrentPlayerX;
-    //element.innerHTML = piece;
     element.innerHTML = placePiece(piece);
     let gameState = document.getElementById('currentMove');
     let nextPiece = isCurrentPlayerX ? 'X' : 'O';
@@ -80,4 +85,12 @@ checkWinState = () => {
 
 filled = (arr) => {
     return (arr[0] === arr[1] && arr[1] === arr[2] && arr[1] !== null);
+}
+
+reloadBoard = () => {
+    board = resetBoard.slice();
+    let boxes = Array.from(document.getElementsByClassName('box'));
+    boxes.forEach((el) => el.innerHTML = null);
+    isCurrentPlayerX = true;
+    document.getElementById('currentMove').innerHTML = "X - make the first move!";
 }
