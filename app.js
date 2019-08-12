@@ -6,6 +6,8 @@ let board = [
 
 let isCurrentPlayerX;
 let gameOver = false;
+let pieceX = "https://i.imgur.com/meftV0q.gif";
+let pieceO = "https://s8.postimg.cc/t4wv9plut/278104_Mother_of_God.gif";
 
 log = (element) => {
     let tuple = JSON.parse(element.id);
@@ -20,21 +22,37 @@ flip = (element, tuple) => {
     let piece = isCurrentPlayerX ? 'X' : 'O';
     board[tuple[0]][tuple[1]] = piece;
     isCurrentPlayerX = !isCurrentPlayerX;
-    element.innerHTML = piece;
+    //element.innerHTML = piece;
+    element.innerHTML = placePiece(piece);
     let gameState = document.getElementById('currentMove');
     let nextPiece = isCurrentPlayerX ? 'X' : 'O';
     gameState.innerHTML = `It's ${nextPiece}'s turn to play`
     checkWinState();
 }
 
-checkWinState = () => {
-    //check for tie
-        //mark as tie
-    //check for winner
-        //update state
+placePiece = (piece) => {
+    if(piece === 'X'){
+        return `<img class="pieceX" src=${pieceX}>`;
+    } else if (piece === 'O'){
+        return `<img class="pieceX" src=${pieceO}>`;
+    }
+}
 
+checkWinState = () => {
+    let gameState = document.getElementById('currentMove');
+
+    let checkTie = true;
+    for(let i = 0; i < board.length; i++){
+        if(board[i].includes(null)) checkTie = false;
+    }
+    
+    if(checkTie){
+        gameOver = true;
+        gameState.innerHTML = `It's a tie - you both lose!`
+    }
+    
     let checkRows = board.reduce((a, b) => {
-        return a|| filled(b)
+        return a || filled(b)
     }, false)
 
     let checkColumns = false;
@@ -54,7 +72,6 @@ checkWinState = () => {
     gameOver = (checkRows || checkColumns || checkDiagonals);
 
     if(gameOver){
-        let gameState = document.getElementById('currentMove');
         let winner = isCurrentPlayerX ? 'O' : 'X';
         gameState.innerHTML = `${winner} has won the game!`
     }

@@ -79,6 +79,10 @@ body {
     height: 20vh;
     width: 20vh;
     border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .gameInfo {
@@ -86,4 +90,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.pieceX {
+    height: auto;
+    width: 20vh;
 }
