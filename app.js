@@ -24,8 +24,8 @@ let pieceO = "https://s8.postimg.cc/t4wv9plut/278104_Mother_of_God.gif";
 logger = (el) => {
     log(el.target);
 }
-let boxDivs = Array.from(document.getElementsByClassName('box'));
-boxDivs.forEach((el) => el.addEventListener('click', logger, false));
+let boxes = Array.from(document.getElementsByClassName('box'));
+boxes.forEach((el) => el.addEventListener('click', logger, false));
 
 //Log a click
 log = (element) => {
@@ -109,7 +109,6 @@ reloadBoard = () => {
     for (let i = 0; i < board.length; i++){
         board[i] = resetBoard[i].slice();
     }
-    let boxes = Array.from(document.getElementsByClassName('box'));
     boxes.forEach((el) => el.innerHTML = null);
     isCurrentPlayerX = true;
     document.getElementById('currentMove').innerHTML = "X - make the first move!";
