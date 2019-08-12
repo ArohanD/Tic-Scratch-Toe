@@ -1,22 +1,16 @@
 
 //State -----
-let board = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-]
-
-let resetBoard = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-]
-
-let isCurrentPlayerX;
-let gameOver = false;
-let pieceX = "./Huehuehue.gif";
-let pieceO = "./Hawk.gif";
-
+let state = {
+    board: [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null],
+    ],
+    isCurrentPlayerX: undefined,
+    gameOver: false,
+    pieceX: "./Huehuehue.gif",
+    pieceO: "./Hawk.gif"
+}
 
 //State Changers -----
 
@@ -30,70 +24,70 @@ boxes.forEach((el) => el.addEventListener('click', logger, false));
 //Log a click
 log = (element) => {
     let tuple = JSON.parse(element.id);
-    let position = board[tuple[0]][tuple[1]];
-    if(position === null && !gameOver){
+    let position = state.board[tuple[0]][tuple[1]];
+    if(position === null && !state.gameOver){
         flip(element, tuple);
     }
 }
 
-//Flip piece on gameboard in app
+//Flip piece on gamestate.board in app
 flip = (element, tuple) => {
-    if(isCurrentPlayerX === undefined) isCurrentPlayerX = true;
-    let piece = isCurrentPlayerX ? 'X' : 'O';
-    board[tuple[0]][tuple[1]] = piece;
-    isCurrentPlayerX = !isCurrentPlayerX;
+    if(state.isCurrentPlayerX === undefined) state.isCurrentPlayerX = true;
+    let piece = state.isCurrentPlayerX ? 'X' : 'O';
+    state.board[tuple[0]][tuple[1]] = piece;
+    state.isCurrentPlayerX = !state.isCurrentPlayerX;
     element.innerHTML = placePiece(piece);
     let gameState = document.getElementById('currentMove');
-    let nextPiece = isCurrentPlayerX ? 'X' : 'O';
+    let nextPiece = state.isCurrentPlayerX ? 'X' : 'O';
     gameState.innerHTML = `It's ${nextPiece}'s turn to play`
     checkWinState();
 }
 
-//Place piece on gameboard
+//Place piece on gamestate.board
 placePiece = (piece) => {
     if(piece === 'X'){
-        return `<img class="pieceX" src=${pieceX}>`;
+        return `<img class="pieceX" src=${state.pieceX}>`;
     } else if (piece === 'O'){
-        return `<img class="pieceX" src=${pieceO}>`;
+        return `<img class="pieceX" src=${state.pieceO}>`;
     }
 }
 
-//Update state of non-board components
+//Update state of non-state.board components
 checkWinState = () => {
     let gameState = document.getElementById('currentMove');
 
     let checkTie = true;
-    for(let i = 0; i < board.length; i++){
-        if(board[i].includes(null)) checkTie = false;
+    for(let i = 0; i < state.board.length; i++){
+        if(state.board[i].includes(null)) checkTie = false;
     }
     
     if(checkTie){
-        gameOver = true;
+        state.gameOver = true;
         gameState.innerHTML = `It's a tie - you both lose!`
     }
     
-    let checkRows = board.reduce((a, b) => {
+    let checkRows = state.board.reduce((a, b) => {
         return a || filled(b)
     }, false)
 
     let checkColumns = false;
-    for (let i = 0; i < board.length; i++){
+    for (let i = 0; i < state.board.length; i++){
         let toCheck = [];
-        toCheck.push(board[0][i])
-        toCheck.push(board[1][i])
-        toCheck.push(board[2][i])
+        toCheck.push(state.board[0][i])
+        toCheck.push(state.board[1][i])
+        toCheck.push(state.board[2][i])
         if(filled(toCheck)){
             checkColumns = true;
         }
     }
 
-    let checkDiagonals = filled([board[0][0], board[1][1], board[2][2]]) 
-        || filled([board[0][2], board[1][1], board[2][0]]);
+    let checkDiagonals = filled([state.board[0][0], state.board[1][1], state.board[2][2]]) 
+        || filled([state.board[0][2], state.board[1][1], state.board[2][0]]);
 
-    gameOver = (checkRows || checkColumns || checkDiagonals);
+    state.gameOver = (checkRows || checkColumns || checkDiagonals);
 
-    if(gameOver){
-        let winner = isCurrentPlayerX ? 'O' : 'X';
+    if(state.gameOver){
+        let winner = state.isCurrentPlayerX ? 'O' : 'X';
         gameState.innerHTML = `${winner} has won the game!`
     }
 
@@ -104,13 +98,19 @@ filled = (arr) => {
     return (arr[0] === arr[1] && arr[1] === arr[2] && arr[1] !== null);
 }
 
+let resetBoard = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+]
+
 //Reset box DOM elements
 reloadBoard = () => {
-    for (let i = 0; i < board.length; i++){
-        board[i] = resetBoard[i].slice();
+    for (let i = 0; i < state.board.length; i++){
+        state.board[i] = resetBoard[i].slice();
     }
     boxes.forEach((el) => el.innerHTML = null);
-    isCurrentPlayerX = true;
+    state.isCurrentPlayerX = true;
     document.getElementById('currentMove').innerHTML = "X - make the first move!";
-    gameOver = false;
+    state.gameOver = false;
 }
