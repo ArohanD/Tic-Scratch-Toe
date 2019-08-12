@@ -6,32 +6,32 @@
     </head>
 
     <body>
-        <script src="./app.js" type="text/javascript"></script>
         <h1 id="title">Tic-Scratch-Toe</h1>
         <div id="board">
             <div class="row">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
+                <div class="box" id="[0,0]" onclick="log(this)"></div>
+                <div class="box" id="[0,1]" onclick="log(this)"></div>
+                <div class="box" id="[0,2]" onclick="log(this)"></div>
             </div>
-
+            
             <div class="row">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
+                <div class="box" id="[1,0]" onclick="log(this)"></div>
+                <div class="box" id="[1,1]" onclick="log(this)"></div>
+                <div class="box" id="[1,2]" onclick="log(this)"></div>
             </div>
-
+            
             <div class="row">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
+                <div class="box" id="[2,0]" onclick="log(this)"></div>
+                <div class="box" id="[2,1]" onclick="log(this)"></div>
+                <div class="box" id="[2,2]" onclick="log(this)"></div>
             </div>
-
+            
         </div>
         <div class="gameInfo">
             <button>New Game</button>
-            <div class='currentMove'>It's X's turn to play</div>
+            <div id='currentMove'>X - make the first move!</div>
         </div>
-
+        
+        <script src="./app.js" type="text/javascript"></script>
     </body>
 </html>

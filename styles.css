@@ -58,13 +58,20 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    background-color: #5E81AD;
+    color: whitesmoke;
 }
 
 #board {
     background-color: red;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
+}
+
+.row {
+    display: flex;
 }
 
 .box {
