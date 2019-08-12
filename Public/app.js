@@ -14,8 +14,8 @@ let resetBoard = [
 
 let isCurrentPlayerX;
 let gameOver = false;
-let pieceX = "https://i.imgur.com/meftV0q.gif";
-let pieceO = "https://s8.postimg.cc/t4wv9plut/278104_Mother_of_God.gif";
+let pieceX = "./Huehuehue.gif";
+let pieceO = "./Hawk.gif";
 
 
 //State Changers -----
