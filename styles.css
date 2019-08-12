@@ -101,3 +101,10 @@ body {
 h1 {
     font-size: 8vh;
 }
+
+#reload {
+    background: cadetblue;
+    color: whitesmoke;
+    outline: none;
+    box-shadow: none;
+}
