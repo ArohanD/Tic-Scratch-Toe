@@ -1,3 +1,5 @@
+
+//State -----
 let board = [
     [null, null, null],
     [null, null, null],
@@ -15,6 +17,17 @@ let gameOver = false;
 let pieceX = "https://i.imgur.com/meftV0q.gif";
 let pieceO = "https://s8.postimg.cc/t4wv9plut/278104_Mother_of_God.gif";
 
+
+//State Changers -----
+
+//Golbal click listener
+logger = (el) => {
+    log(el.target);
+}
+let boxDivs = Array.from(document.getElementsByClassName('box'));
+boxDivs.forEach((el) => el.addEventListener('click', logger, false));
+
+//Log a click
 log = (element) => {
     let tuple = JSON.parse(element.id);
     let position = board[tuple[0]][tuple[1]];
@@ -23,6 +36,7 @@ log = (element) => {
     }
 }
 
+//Flip piece on gameboard in app
 flip = (element, tuple) => {
     if(isCurrentPlayerX === undefined) isCurrentPlayerX = true;
     let piece = isCurrentPlayerX ? 'X' : 'O';
@@ -35,6 +49,7 @@ flip = (element, tuple) => {
     checkWinState();
 }
 
+//Place piece on gameboard
 placePiece = (piece) => {
     if(piece === 'X'){
         return `<img class="pieceX" src=${pieceX}>`;
@@ -43,6 +58,7 @@ placePiece = (piece) => {
     }
 }
 
+//Update state of non-board components
 checkWinState = () => {
     let gameState = document.getElementById('currentMove');
 
@@ -83,14 +99,19 @@ checkWinState = () => {
 
 }
 
+//Check if any row/col/diag is a winner
 filled = (arr) => {
     return (arr[0] === arr[1] && arr[1] === arr[2] && arr[1] !== null);
 }
 
+//Reset box DOM elements
 reloadBoard = () => {
-    board = resetBoard.slice();
+    for (let i = 0; i < board.length; i++){
+        board[i] = resetBoard[i].slice();
+    }
     let boxes = Array.from(document.getElementsByClassName('box'));
     boxes.forEach((el) => el.innerHTML = null);
     isCurrentPlayerX = true;
     document.getElementById('currentMove').innerHTML = "X - make the first move!";
+    gameOver = false;
 }
