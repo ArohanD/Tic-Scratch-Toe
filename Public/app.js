@@ -49,9 +49,9 @@ flip = (element, tuple) => {
 //Place piece on gamestate.board
 placePiece = (piece) => {
     if(piece === 'X'){
-        return `<img class="pieceX" src=${state.pieceX}>`;
+        return `<img class="piece" src=${state.pieceX}>`;
     } else if (piece === 'O'){
-        return `<img class="pieceX" src=${state.pieceO}>`;
+        return `<img class="piece" src=${state.pieceO}>`;
     }
 }
 
@@ -69,7 +69,8 @@ checkWinState = () => {
         state.tieCount++;
         gameState.innerHTML = `It's a tie - you both lose!`
         document.getElementById('winCount').innerHTML = `X has won ${state.xWinCount} times
-        , O has won ${state.oWinCount} times.\nThere have been ${state.tieCount} ties.`
+        , O has won ${state.oWinCount} times.
+        There have been ${state.tieCount} ties.`
     }
     
     let checkRows = state.board.reduce((a, b) => {
@@ -97,7 +98,8 @@ checkWinState = () => {
         gameState.innerHTML = `${winner} has won the game!`;
         winner === 'X' ? state.xWinCount++ : state.oWinCount++;
         document.getElementById('winCount').innerHTML = `X has won ${state.xWinCount} times
-        , O has won ${state.oWinCount} times.\nThere have been ${state.tieCount} ties.`
+        , O has won ${state.oWinCount} times.
+        here have been ${state.tieCount} ties.`
     }
 
 }

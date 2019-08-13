@@ -87,13 +87,13 @@ body {
 }
 
 .gameInfo {
-    width: 50vh;
+    width: 50vw;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.pieceX {
+.piece {
     height: auto;
     width: 20vh;
 }
@@ -107,4 +107,46 @@ h1 {
     color: whitesmoke;
     outline: none;
     box-shadow: none;
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        padding-top: 12%;
+        height: 85vh;
+    }
+    
+    .box {
+        height: 250px;
+        width: 250px;
+    }
+
+    h1 {
+        font-size: 6em;
+    }
+
+    #winCount {
+        font-size: 2em;
+        align-items: center;
+    }
+    
+    .gameInfo {
+        padding-top: 20px;
+        flex-direction: column-reverse;
+        height: 13%;
+        justify-content: space-between;
+    }
+
+    #currentMove {
+        font-size: 3em;
+        align-self: center;
+    }
+
+    #reload {
+        font-size: 3em;
+    }
+
+    .piece {
+        width: 250px;
+        height: auto;
+    }
 }
