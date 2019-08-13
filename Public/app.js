@@ -9,7 +9,10 @@ let state = {
     isCurrentPlayerX: undefined,
     gameOver: false,
     pieceX: "./Huehuehue.gif",
-    pieceO: "./Hawk.gif"
+    pieceO: "./Hawk.gif",
+    xWinCount: 0,
+    oWinCount: 0,
+    tieCount: 0
 }
 
 //State Changers -----
@@ -63,7 +66,10 @@ checkWinState = () => {
     
     if(checkTie){
         state.gameOver = true;
+        state.tieCount++;
         gameState.innerHTML = `It's a tie - you both lose!`
+        document.getElementById('winCount').innerHTML = `X has won ${state.xWinCount} times
+        , O has won ${state.oWinCount} times.\nThere have been ${state.tieCount} ties.`
     }
     
     let checkRows = state.board.reduce((a, b) => {
@@ -88,7 +94,10 @@ checkWinState = () => {
 
     if(state.gameOver){
         let winner = state.isCurrentPlayerX ? 'O' : 'X';
-        gameState.innerHTML = `${winner} has won the game!`
+        gameState.innerHTML = `${winner} has won the game!`;
+        winner === 'X' ? state.xWinCount++ : state.oWinCount++;
+        document.getElementById('winCount').innerHTML = `X has won ${state.xWinCount} times
+        , O has won ${state.oWinCount} times.\nThere have been ${state.tieCount} ties.`
     }
 
 }
