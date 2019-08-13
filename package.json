@@ -1,0 +1,22 @@
+{
+  "name": "tic-scratch-toe",
+  "version": "1.0.0",
+  "description": "Building a tic-tac-toe style game using vanilla JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArohanD/Tic-Scratch-Toe.git"
+  },
+  "author": "Arohan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArohanD/Tic-Scratch-Toe/issues"
+  },
+  "homepage": "https://github.com/ArohanD/Tic-Scratch-Toe#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
